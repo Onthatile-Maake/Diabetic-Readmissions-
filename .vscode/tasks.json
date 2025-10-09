@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Streamlit: Run app",
+            "type": "shell",
+            "command": "streamlit run \"${workspaceFolder}\\app.py\"",
+            "problemMatcher": []
+        }
+    ]
+}
