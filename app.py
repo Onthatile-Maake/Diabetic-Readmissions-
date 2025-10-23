@@ -4,11 +4,11 @@ import numpy as np
 import joblib
 import plotly.graph_objects as go
 import plotly.express as px
+import os
 
-# File paths
-BASE_PATH = r"C:\Users\dinne\Diabetic-Readmissions-"
-MODEL_PATH = BASE_PATH + r"\Model\diabetic_readmission_model.joblib"
-FEATURE_INFO_PATH = BASE_PATH + r"\Model\feature_info.joblib"
+# File paths for deployment - using relative paths
+MODEL_PATH = "diabetic_readmission_model.joblib"
+FEATURE_INFO_PATH = "feature_info.joblib"
 
 # Page config
 st.set_page_config(page_title="30-Day Diabetes Readmission Predictor", layout="wide")
@@ -21,6 +21,14 @@ class Predictor:
         
     def load_model(self):
         try:
+            # Check if files exist
+            if not os.path.exists(MODEL_PATH):
+                st.error(f"Model file not found: {MODEL_PATH}")
+                return False
+            if not os.path.exists(FEATURE_INFO_PATH):
+                st.error(f"Feature info file not found: {FEATURE_INFO_PATH}")
+                return False
+                
             self.model = joblib.load(MODEL_PATH)
             feature_info = joblib.load(FEATURE_INFO_PATH)
             self.features = feature_info['feature_names']
@@ -363,9 +371,13 @@ def about_page():
 def main():
     predictor = Predictor()
     
+    # Show loading status
     if not predictor.model:
-        with st.spinner("Loading model..."):
-            predictor.load_model()
+        with st.spinner("Loading prediction model..."):
+            if not predictor.load_model():
+                st.error("❌ Failed to load model. Please check that model files are in the correct location.")
+                st.info("Required files: `diabetic_readmission_model.joblib` and `feature_info.joblib`")
+                return
     
     page = st.sidebar.selectbox("Navigate", ["30-Day Prediction", "Risk Analysis", "About"])
     
