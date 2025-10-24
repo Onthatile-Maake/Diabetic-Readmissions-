@@ -54,9 +54,9 @@ tuning and feature engineering.
 
 ## License
 
-# Academic License
+### Academic License
 
 This project is licensed under the Academic License. You are free to use, modify, and distribute the project for educational purposes, provided that you give  
 appropriate credit to the original authors.
 
-   pip install -r requirements.txt
+  
