@@ -2,7 +2,7 @@
 
 ## Overview
 
-The 30-Day Diabetes Readmission Prediction project aims to analyze healthcare data to predict the likelihood of hospital readmission for diabetic patients within 30 days of discharge. This analysis helps healthcare providers take proactive measures to improve patient outcomes.
+The 30-Day Diabetes Readmission Prediction project aims to analyze online healthcare data to predict the likelihood of hospital readmission for diabetic patients within 30 days of discharge. This analysis helps healthcare providers take proactive measures to improve patient outcomes.
 
 ## Dataset
 
